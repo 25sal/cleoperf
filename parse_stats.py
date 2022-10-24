@@ -35,6 +35,8 @@ for test in test_set:
         if "dump" in line:
             if start_time ==  None:
                 start_time = float(line.split(" ")[-1])
+            elif current_time ==  float(line.split(" ")[-1]) - start_time:
+                break
             current_time = float(line.split(" ")[-1]) - start_time
             time_stamps.append(float(line.split(" ")[-1]))
         elif "users " in line:
