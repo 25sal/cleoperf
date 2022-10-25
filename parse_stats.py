@@ -55,8 +55,8 @@ for test in test_set:
                                      columns=['users', 'time', 'parameter', 'rate', 'mean', 'stddev', 'max', 'min',
                                               'meanfb', 'countfb'])])
 
-df.to_csv('df_stats.csv')
-df_users.to_csv('df_users.csv')
+df.to_csv('4_mirador_df_stats.csv')
+df_users.to_csv('4_mirador_df_users.csv')
 
 
 
