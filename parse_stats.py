@@ -7,9 +7,8 @@ from matplotlib import pyplot as plt
 
 
 base_cleo = '2_test_cleopatra_mongo_'
-base_cleo = '3_test_mirador_'
-base_mir = '3_test_mirador_'
-test_set = [20,40,80,160,320]
+base_mir = '4_test_mirador_'
+test_set = [1, 20,40,80,160,320]
 
 base_dir = '/home/salvatore/Documents/ricerca/papers/drafts/2022-cleopatra/ijwgs/experiments/tsung/log2'
 
@@ -43,6 +42,15 @@ for test in test_set:
             row = [test, current_time, float(line.split(" ")[2])]
             df_users = pd.concat([df_users, pd.DataFrame([row],
                                              columns=['users', 'time', 'connected'])])
+        elif "size_" in line:
+            row = [test, current_time, values[0]]
+            float_values = np.array(values[1:]).astype(float)
+            row = np.concatenate((row, float_values), axis=None)
+            row = np.concatenate((row, [-1,-1,-1,-1,-1]), axis=None)
+            df = pd.concat([df, pd.DataFrame([row],
+                                             columns=['users', 'time', 'parameter', 'rate', 'mean', 'stddev', 'max',
+                                                      'min',
+                                                      'meanfb', 'countfb'])])
 
         elif values[0] in parameters:
             # ($rate,$mean,$stddev,$max,$min,$meanfb,$countfb) = split(/\s+/,$values);
